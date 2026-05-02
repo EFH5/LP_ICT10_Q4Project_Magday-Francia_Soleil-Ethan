@@ -8,12 +8,10 @@
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.3.1/core.css" />
     <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
 
-    <script type="py">
-    import micropip
-    await micropip.install("numpy")
-    await micropip.install("matplotlib")
-    </script>
-    
+    <py-config>
+packages = ["numpy", "matplotlib"]
+    </py-config>
+
     <script type="py" src="main.py"></script>
 
     <style>
@@ -110,15 +108,9 @@
             <a class="navbar-brand" href="index.html">10-Sapphire</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Classmates</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="page3.html">Attendance Tracker</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="page2.html">Gallery</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Classmates</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="page3.html">Attendance Tracker</a></li>
+                    <li class="nav-item"><a class="nav-link" href="page2.html">Gallery</a></li>
                 </ul>
             </div>
         </div>
