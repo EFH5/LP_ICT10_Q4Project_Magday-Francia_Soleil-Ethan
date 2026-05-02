@@ -44,7 +44,7 @@ def displaying(event=None):
     plt.ylabel("Number of Absences")
     plt.grid()
 
-    display(plt.gcf(), target="graph")
+    display(plt.gcf(), target="graph", append=False)
 
     document.getElementById("signed").innerText = "Attendance added!"
 
