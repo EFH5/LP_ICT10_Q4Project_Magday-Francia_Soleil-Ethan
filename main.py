@@ -1,34 +1,9 @@
 from pyscript import document, display
 import numpy as np
-import logging
-logging.getLogger('matplotlib').setLevel(logging.ERROR)
 import matplotlib.pyplot as plt
-
-plt.figure()
-plt.plot([0, 1], [0, 1])
-plt.close()
 
 days = []
 absences = []
-
-def displaying(e=None):
-    day = document.getElementById('day').value
-    absence = int(document.getElementById('absence').value)
-
-    days.append(day)
-    absences.append(absence)
-
-    converted_absences = np.array(absences)
-
-    plt.clf()
-    plt.plot(days, converted_absences, marker='o')
-    plt.title("Weekly Attendance (Absences)")
-    plt.xlabel("Day")
-    plt.ylabel("Number of Absences")
-    plt.grid()
-
-    display(plt.gcf())
-
 
 class Classmate:
     def __init__(self, name, section, job):
@@ -49,8 +24,34 @@ classmates = [
 ]
 
 
+def displaying(event=None):
+    day = document.getElementById('day').value
+    absence = document.getElementById('absence').value
+
+    if absence == "":
+        document.getElementById("signed").innerText = "Enter a number!"
+        return
+
+    absence = int(absence)
+
+    days.append(day)
+    absences.append(absence)
+
+    plt.clf()
+    plt.plot(days, absences, marker='o')
+    plt.title("Weekly Attendance (Absences)")
+    plt.xlabel("Day")
+    plt.ylabel("Number of Absences")
+    plt.grid()
+
+    display(plt.gcf(), target="graph")
+
+    document.getElementById("signed").innerText = "Attendance added!"
+
+
 def show_list(event=None):
     output = ""
+
     for classmate in classmates:
         output += classmate.introduce()
 
@@ -60,22 +61,21 @@ def show_list(event=None):
 
 
 def add_classmate(event=None):
-    username = document.getElementById("name").value.strip()
+    name = document.getElementById("name").value.strip()
     section = document.getElementById("section").value.strip()
-    desiredJob = document.getElementById("desiredJob").value.strip()
+    job = document.getElementById("desiredJob").value.strip()
 
-    if not username or not section or not desiredJob:
+    if not name or not section or not job:
         document.getElementById("signed").innerText = "Please fill in all fields!"
         return
 
-    if any(c.name == username for c in classmates):
+    if any(c.name == name for c in classmates):
         document.getElementById("signed").innerText = "You're already in the list!"
         return
 
-    new_classmate = Classmate(username, section, desiredJob)
-    classmates.append(new_classmate)
+    classmates.append(Classmate(name, section, job))
 
-    document.getElementById("signed").innerText = f"{username} added successfully!"
+    document.getElementById("signed").innerText = f"{name} added successfully!"
 
     document.getElementById("name").value = ""
     document.getElementById("section").value = ""
