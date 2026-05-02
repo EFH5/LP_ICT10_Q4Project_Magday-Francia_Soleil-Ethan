@@ -8,9 +8,13 @@
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.3.1/core.css" />
     <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
 
-    <py-config>
-packages = ["numpy", "matplotlib"]
-    </py-config>
+    <script type="py">
+    import micropip
+    await micropip.install("numpy")
+    await micropip.install("matplotlib")
+    </script>
+    
+    <script type="py" src="main.py"></script>
 
     <style>
         body {
@@ -150,6 +154,5 @@ packages = ["numpy", "matplotlib"]
         <p id="footertext">SY 2025-2026 10-Sapphire. All Rights Reserved.</p>
     </footer>
 
-    <script type="py" src="main.py"></script>
 </body>
 </html>
