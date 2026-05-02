@@ -37,6 +37,9 @@ def displaying(event=None):
     days.append(day)
     absences.append(absence)
 
+    graph_div = document.getElementById("graph")
+    graph_div.innerHTML = ""
+
     plt.clf()
     plt.plot(days, absences, marker='o')
     plt.title("Weekly Attendance (Absences)")
@@ -44,7 +47,9 @@ def displaying(event=None):
     plt.ylabel("Number of Absences")
     plt.grid()
 
-    display(plt.gcf(), target="graph", append=False)
+    display(plt.gcf(), target="graph")
+
+    plt.close()
 
     document.getElementById("signed").innerText = "Attendance added!"
 
